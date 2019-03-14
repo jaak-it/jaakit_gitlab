@@ -6,10 +6,18 @@ MAINTAINER JAAK-IT <hello@jaak-it.com>
 
 RUN yum install -y curl policycoreutils-python openssh-server openssh-clients
 
+RUN systemctl enable sshd
+
+RUN systemctl start sshd
+
 RUN yum -y install postfix
 
-RUN systemctl enable postfix.service
+RUN systemctl enable postfix
 
-RUN systemctl start postfix.service
+RUN systemctl start postfix
+
+RUN curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rpm.sh | sudo bash
+
+RUN EXTERNAL_URL="http://gitlab.fiinlab.jaak-it.com" yum install -y gitlab-ee
 
 EXPOSE 8080
