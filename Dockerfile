@@ -4,4 +4,12 @@ FROM base as builder
 
 MAINTAINER JAAK-IT <hello@jaak-it.com>
 
+RUN yum install -y curl policycoreutils-python openssh-server openssh-clients
+
+RUN yum -y install postfix
+
+RUN systemctl enable postfix.service
+
+RUN systemctl start postfix.service
+
 EXPOSE 8080
