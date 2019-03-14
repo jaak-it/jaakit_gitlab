@@ -8,13 +8,13 @@ RUN yum install -y curl policycoreutils-python openssh-server openssh-clients
 
 RUN systemctl enable sshd
 
-RUN systemctl start sshd
+#RUN systemctl start sshd
 
 RUN yum -y install postfix
 
 RUN systemctl enable postfix
 
-RUN systemctl start postfix
+#RUN systemctl start postfix
 
 RUN curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rpm.sh | sudo bash
 
