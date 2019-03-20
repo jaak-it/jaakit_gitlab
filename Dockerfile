@@ -8,20 +8,37 @@ RUN yum install -y curl policycoreutils-python openssh-server openssh-clients
 
 RUN systemctl enable sshd
 
-#RUN systemctl start sshd
-
 RUN yum -y install postfix
 
 RUN systemctl enable postfix
 
-#RUN systemctl start postfix
+RUN yum -y install ruby redis which
+
+RUN systemctl enable redis
 
 # Setup the GitLab RPM repo
-# RUN curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rpm.sh | bash
 RUN curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh | bash
 
 #Install GitLab
-#RUN EXTERNAL_URL="http://gitlab.fiinlab.jaak-it.com" yum install -y gitlab-ee
-RUN EXTERNAL_URL="http://gitlab.fiinlab.jaak-it.com" yum install -y gitlab-ce
+#RUN EXTERNAL_URL="http://gitlab.fiinlab.jaak-it.com" yum install -y gitlab-ce
+RUN yum install -y gitlab-ce
 
-EXPOSE 8888
+# Copy configuration file to gitlab-ctl reconfigure
+COPY gitlab.rb /etc/gitlab/gitlab.rb
+
+# Reconfigure gitlab
+RUN /opt/gitlab/embedded/bin/runsvdir-start & gitlab-ctl reconfigure; exit 0
+RUN /opt/gitlab/embedded/bin/runsvdir-start & gitlab-ctl reconfigure; exit 0
+RUN /opt/gitlab/embedded/bin/runsvdir-start & gitlab-ctl reconfigure; exit 0
+RUN /opt/gitlab/embedded/bin/runsvdir-start & gitlab-ctl reconfigure; exit 0
+RUN /opt/gitlab/embedded/bin/runsvdir-start & gitlab-ctl reconfigure; exit 0
+RUN /opt/gitlab/embedded/bin/runsvdir-start & gitlab-ctl reconfigure; exit 0
+RUN /opt/gitlab/embedded/bin/runsvdir-start & gitlab-ctl reconfigure; exit 0
+RUN /opt/gitlab/embedded/bin/runsvdir-start & gitlab-ctl reconfigure; exit 0
+RUN /opt/gitlab/embedded/bin/runsvdir-start & gitlab-ctl reconfigure
+
+COPY ./entrypoint.sh /
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+
+EXPOSE 80
