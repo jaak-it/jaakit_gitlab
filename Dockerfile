@@ -43,4 +43,4 @@ ENTRYPOINT ["/entrypoint.sh"]
 
 EXPOSE 80
 
-VOLUME ["/etc/gitlab", "/var/opt/gitlab", "/var/log/gitlab"]
+VOLUME ["/etc/gitlab", "/var/opt/gitlab", "/var/log/gitlab", "/sys/fs/cgroup"]
