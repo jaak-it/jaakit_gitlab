@@ -42,3 +42,5 @@ RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
 EXPOSE 80
+
+VOLUME ["/etc/gitlab", "/var/opt/gitlab", "/var/log/gitlab"]
