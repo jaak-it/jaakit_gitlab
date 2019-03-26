@@ -1,0 +1,102 @@
+{
+    "id": "gitlab",
+    "container": {
+      "type": "DOCKER",
+      "volumes": [
+        {
+          "persistent": {
+            "type": "root",
+            "size": 1000,
+            "constraints": []
+          },
+          "mode": "RW",
+          "containerPath": "config"
+        },
+        {
+          "containerPath": "/etc/gitlab/",
+          "hostPath": "/srv/gitlab/config",
+          "mode": "RW"
+        },
+        {
+          "persistent": {
+            "type": "root",
+            "size": 1000,
+            "constraints": []
+          },
+          "mode": "RW",
+          "containerPath": "data"
+        },
+        {
+          "containerPath": "/var/opt/gitlab/",
+          "hostPath": "/srv/gitlab/data",
+          "mode": "RW"
+        },
+        {
+          "persistent": {
+            "type": "root",
+            "size": 1000,
+            "constraints": []
+          },
+          "mode": "RW",
+          "containerPath": "logs"
+        },
+        {
+          "containerPath": "var/log/gitlab/",
+          "hostPath": "/srv/gitlab/logs",
+          "mode": "RW"
+        }
+      ],
+      "docker": {
+        "image": "bootstrap1.work.fiinlab.local:8083/jaakit_gitlab:0.0.16",
+        "privileged": true,
+        "parameters": [
+          {
+            "key": "log-driver",
+            "value": "none"
+          }
+        ]
+      },
+      "portMappings": [
+        {
+            "hostPort": 10112,
+            "containerPort": 80,
+            "protocol": "tcp"
+        }
+    ]
+    },
+    "networks": [
+      {
+        "mode": "container/bridge"
+      }
+    ],
+    "instances": 1,
+    "cpus": 2,
+    "mem": 4098,
+    "routing": {
+      "https-redirect": false,
+      "virtualHost": "172.17.78.46",
+      "ssh-port": 22222,
+      "registry-port": 50000
+    },
+    "healthChecks": [{
+        "protocol": "HTTP",
+        "path": "/",
+        "portIndex": 0,
+        "timeoutSeconds": 2,
+        "gracePeriodSeconds": 15,
+        "intervalSeconds": 3,
+        "maxConsecutiveFailures": 2
+    }],
+    "labels":{
+      "HAPROXY_DEPLOYMENT_GROUP":"gitlab",
+      "HAPROXY_DEPLOYMENT_ALT_PORT":"10006",
+      "HAPROXY_GROUP":"external",
+      "HAPROXY_0_REDIRECT_TO_HTTPS":"true",
+      "HAPROXY_0_STICKY":"true",
+      "HAPROXY_0_VHOST": "fiinlab.jaak-it.com"
+  
+    },
+    "fetch":[
+      { "uri": "file:///etc/docker.tar.gz" }
+    ]
+  }
