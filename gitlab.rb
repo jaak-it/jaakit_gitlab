@@ -252,24 +252,40 @@ external_url 'http://127.0.0.1'
 
 gitlab_rails['ldap_enabled'] = true
 
+gitlab_rails['ldap_servers'] = {
+'main' => {
+  'label' => 'LDAP',
+  'host' =>  '172.17.77.99',
+  'port' => 389,
+  'uid' => 'uid',
+  'encryption' => 'plain',
+  'verify_certificates' => false,
+  'bind_dn' => 'cn=Manager,dc=work,dc=fiinlab,dc=local',
+  'password' => 'F11nl4b',
+  'active_directory' => false,
+  'base' => 'ou=Users,dc=work,dc=fiinlab,dc=local',
+  'user_filter' => 'memberOf=cn=git,ou=Group,dc=work,dc=fiinlab,dc=local'
+  }
+}
+
 ###! **remember to close this block with 'EOS' below**
-gitlab_rails['ldap_servers'] = YAML.load <<-'EOS'
-  main: # 'main' is the GitLab 'provider ID' of this LDAP server
-    label: 'LDAP-JaakIT-Fiinlab'
-    host: '172.17.77.99'
-    port: 389
-    uid: 'uid'
-    bind_dn: 'cn=Manager,dc=work,dc=fiinlab,dc=local'
-    password: 'F11nl4b'
-    encryption: 'plain' # "start_tls" or "simple_tls" or "plain"
-    verify_certificates: false
-    smartcard_auth: false
-    active_directory: false
-    allow_username_or_email_login: false
-    lowercase_usernames: false
-    block_auto_created_users: false
-    base: 'ou=Users,dc=work,dc=fiinlab,dc=local'
-    user_filter: 'memberOf=cn=git,ou=Group,dc=work,dc=fiinlab,dc=local'
+# gitlab_rails['ldap_servers'] = YAML.load <<-'EOS'
+#   main: # 'main' is the GitLab 'provider ID' of this LDAP server
+#     label: 'LDAP-JaakIT-Fiinlab'
+#     host: '172.17.77.99'
+#     port: 389
+#     uid: 'uid'
+#     bind_dn: 'cn=Manager,dc=work,dc=fiinlab,dc=local'
+#     password: 'F11nl4b'
+#     encryption: 'plain' # "start_tls" or "simple_tls" or "plain"
+#     verify_certificates: false
+#     smartcard_auth: false
+#     active_directory: false
+#     allow_username_or_email_login: false
+#     lowercase_usernames: false
+#     block_auto_created_users: false
+#     base: 'ou=Users,dc=work,dc=fiinlab,dc=local'
+#     user_filter: 'memberOf=cn=git,ou=Group,dc=work,dc=fiinlab,dc=local'
     ## EE only
 #    group_base: ''
 #    admin_group: ''
@@ -295,7 +311,7 @@ gitlab_rails['ldap_servers'] = YAML.load <<-'EOS'
 #     group_base: ''
 #     admin_group: ''
 #     sync_ssh_keys: false
-EOS
+#EOS
 
 ### Smartcard authentication settings
 ###! Docs: https://docs.gitlab.com/ee/administration/auth/smartcard.html
