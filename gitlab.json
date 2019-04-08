@@ -10,11 +10,11 @@
             "constraints": []
           },
           "mode": "RW",
-          "containerPath": "config"
+          "containerPath": "git-data"
         },
         {
-          "containerPath": "/etc/gitlab/",
-          "hostPath": "/mnt/srv/gitlab/config",
+          "containerPath": "/var/opt/gitlab/git-data",
+          "hostPath": "/mnt/srv/gitlab-data/git-data/",
           "mode": "RW"
         },
         {
@@ -24,11 +24,11 @@
             "constraints": []
           },
           "mode": "RW",
-          "containerPath": "data"
+          "containerPath": "home"
         },
         {
-          "containerPath": "/var/opt/gitlab/",
-          "hostPath": "/mnt/srv/gitlab/data",
+          "containerPath": "/var/opt/gitlab",
+          "hostPath": "/mnt/srv/gitlab-data/home/",
           "mode": "RW"
         },
         {
@@ -38,16 +38,44 @@
             "constraints": []
           },
           "mode": "RW",
-          "containerPath": "logs"
+          "containerPath": "upload"
         },
         {
-          "containerPath": "/var/log/gitlab/",
-          "hostPath": "/mnt/srv/gitlab/logs",
+          "containerPath": "/var/opt/gitlab/gitlab-rails/uploads",
+          "hostPath": "/mnt/srv/gitlab-data/uploads/",
+          "mode": "RW"
+        },
+        {
+          "persistent": {
+            "type": "root",
+            "size": 1000,
+            "constraints": []
+          },
+          "mode": "RW",
+          "containerPath": "shared"
+        },
+        {
+          "containerPath": "/var/opt/gitlab/gitlab-rails/shared",
+          "hostPath": "/mnt/srv/gitlab-data/shared/",
+          "mode": "RW"
+        },
+        {
+          "persistent": {
+            "type": "root",
+            "size": 1000,
+            "constraints": []
+          },
+          "mode": "RW",
+          "containerPath": "builds"
+        },
+        {
+          "containerPath": "/var/opt/gitlab/gitlab-ci/builds",
+          "hostPath": "/mnt/srv/gitlab-data/builds/",
           "mode": "RW"
         }
       ],
       "docker": {
-        "image": "bootstrap1.work.fiinlab.local:8083/jaakit_gitlab:0.0.18",
+        "image": "bootstrap1.work.fiinlab.local:8083/jaakit_gitlab:0.0.22",
         "privileged": true,
         "parameters": [
           {
