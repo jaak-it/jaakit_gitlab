@@ -260,11 +260,11 @@ gitlab_rails['ldap_enabled'] = true
 #   'uid' => 'uid',
 #   'encryption' => 'plain',
 #   'verify_certificates' => false,
-#   'bind_dn' => 'cn=Manager,dc=work,dc=fiinlab,dc=local',
+#   'bind_dn' => 'cn=Manager,dc=live,dc=fiinlab,dc=local',
 #   'password' => 'F11nl4b',
 #   'active_directory' => false,
-#   'base' => 'ou=Users,dc=work,dc=fiinlab,dc=local',
-#   'user_filter' => 'memberOf=cn=git,ou=Group,dc=work,dc=fiinlab,dc=local'
+#   'base' => 'ou=Users,dc=live,dc=fiinlab,dc=local',
+#   'user_filter' => 'memberOf=cn=git,ou=Group,dc=live,dc=fiinlab,dc=local'
 #   }
 # }
 
@@ -275,7 +275,7 @@ gitlab_rails['ldap_servers'] = YAML.load <<-'EOS'
     host: '172.17.77.99'
     port: 389
     uid: 'uid'
-    bind_dn: 'cn=Manager,dc=work,dc=fiinlab,dc=local'
+    bind_dn: 'cn=Manager,dc=live,dc=fiinlab,dc=local'
     password: 'F11nl4b'
     encryption: 'plain' # "start_tls" or "simple_tls" or "plain"
     verify_certificates: false
@@ -284,8 +284,8 @@ gitlab_rails['ldap_servers'] = YAML.load <<-'EOS'
     allow_username_or_email_login: false
     lowercase_usernames: false
     block_auto_created_users: false
-    base: 'ou=Users,dc=work,dc=fiinlab,dc=local'
-    user_filter: 'memberOf=cn=git,ou=Group,dc=work,dc=fiinlab,dc=local'
+    base: 'ou=Users,dc=live,dc=fiinlab,dc=local'
+    user_filter: 'memberOf=cn=git,ou=Group,dc=live,dc=fiinlab,dc=local'
     ## EE only
 #    group_base: ''
 #    admin_group: ''
