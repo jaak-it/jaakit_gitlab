@@ -75,7 +75,7 @@
         }
       ],
       "docker": {
-        "image": "bootstrap1.work.fiinlab.local:8083/jaakit_gitlab_dev:0.0.22",
+        "image": "bootstrap1.live.fiinlab.local:8083/jaakit_gitlab_pro:0.0.22",
         "privileged": true,
         "parameters": [
           {

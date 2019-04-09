@@ -1,6 +1,6 @@
 node {
     def app
-    def dockerName = 'jaakit_gitlab_dev'
+    def dockerName = 'jaakit_gitlab_pro'
     def dockerMayorVersion = '0'
     def dockerMinorVersion = '0'
     def dockerLoginUser = 'admin'
