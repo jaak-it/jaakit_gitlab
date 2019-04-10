@@ -37,6 +37,9 @@ RUN /opt/gitlab/embedded/bin/runsvdir-start & gitlab-ctl reconfigure; exit 0
 RUN /opt/gitlab/embedded/bin/runsvdir-start & gitlab-ctl reconfigure; exit 0
 RUN /opt/gitlab/embedded/bin/runsvdir-start & gitlab-ctl reconfigure
 
+COPY ./fixldap.sh /
+RUN chmod +x
+
 COPY ./entrypoint.sh /
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
