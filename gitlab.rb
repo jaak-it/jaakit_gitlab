@@ -30,30 +30,5 @@ gitlab_rails['ldap_servers'] = YAML.load <<-'EOS'
     block_auto_created_users: false
     base: 'ou=Users,dc=work,dc=fiinlab,dc=local'
     user_filter: 'memberOf=cn=git,ou=Group,dc=work,dc=fiinlab,dc=local'
-    ## EE only
-#    group_base: ''
-#    admin_group: ''
-#    sync_ssh_keys: false
-#
-#   secondary: # 'secondary' is the GitLab 'provider ID' of second LDAP server
-#     label: 'LDAP'
-#     host: '_your_ldap_server'
-#     port: 389
-#     uid: 'sAMAccountName'
-#     bind_dn: '_the_full_dn_of_the_user_you_will_bind_with'
-#     password: '_the_password_of_the_bind_user'
-#     encryption: 'plain' # "start_tls" or "simple_tls" or "plain"
-#     verify_certificates: true
-#     smartcard_auth: false
-#     active_directory: true
-#     allow_username_or_email_login: false
-#     lowercase_usernames: false
-#     block_auto_created_users: false
-#     base: ''
-#     user_filter: ''
-#     ## EE only
-#     group_base: ''
-#     admin_group: ''
-#     sync_ssh_keys: false
 EOS
 
