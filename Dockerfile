@@ -22,6 +22,7 @@ RUN curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/s
 #Install GitLab
 #RUN EXTERNAL_URL="http://gitlab.fiinlab.jaak-it.com" yum install -y gitlab-ce
 RUN yum install -y gitlab-ce
+RUN yum install -y openldap openldap-clients
 
 # Copy configuration file to gitlab-ctl reconfigure
 COPY gitlab.rb /etc/gitlab/gitlab.rb
@@ -38,7 +39,10 @@ RUN /opt/gitlab/embedded/bin/runsvdir-start & gitlab-ctl reconfigure; exit 0
 RUN /opt/gitlab/embedded/bin/runsvdir-start & gitlab-ctl reconfigure
 
 COPY ./fixldap.sh /
-RUN chmod +x
+RUN chmod +x ./fixldap.sh
+
+COPY ./runfixldap.sh /
+RUN chmod +x ./runfixldap.sh
 
 COPY ./entrypoint.sh /
 RUN chmod +x /entrypoint.sh
