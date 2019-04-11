@@ -2,13 +2,17 @@
 external_url 'http://127.0.0.1'
 
 
-### Email Settings
-# gitlab_rails['gitlab_email_enabled'] = true
-# gitlab_rails['gitlab_email_from'] = 'example@example.com'
-# gitlab_rails['gitlab_email_display_name'] = 'Example'
-# gitlab_rails['gitlab_email_reply_to'] = 'noreply@example.com'
-# gitlab_rails['gitlab_email_subject_suffix'] = ''
 
+gitlab_rails['smtp_enable'] = true
+gitlab_rails['smtp_address'] = "smtp.gmail.com"
+gitlab_rails['smtp_port'] = 587
+gitlab_rails['smtp_user_name'] = "rodrigo.rivera@jaak-it.com"
+gitlab_rails['smtp_password'] = "RyAS@nti07"
+gitlab_rails['smtp_domain'] = "smtp.gmail.com"
+gitlab_rails['smtp_authentication'] = "login"
+gitlab_rails['smtp_enable_starttls_auto'] = true
+gitlab_rails['smtp_tls'] = false
+gitlab_rails['smtp_openssl_verify_mode'] = 'peer' # Can be: 'none', 'peer', 'client_once', 'fail_if_no_peer_cert', see http://api.rubyonrails.org/classes/ActionMailer/Base.html
 
 gitlab_rails['ldap_enabled'] = true
 
