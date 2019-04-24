@@ -1,4 +1,4 @@
-external_url 'http://127.0.0.1'
+external_url 'http://git.live.fiinlab.local'
 
 gitlab_rails['ldap_enabled'] = true
 
